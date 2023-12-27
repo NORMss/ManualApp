@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="drawer_list">
+        <item>Jetpack Compose</item>
+        <item>XML</item>
+        <item>Room Library</item>
+        <item>Data Store</item>
+        <item>Jetpack Compose</item>
+        <item>Rest API</item>
+    </string-array>
+</resources>
