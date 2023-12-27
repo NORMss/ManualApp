@@ -25,15 +25,14 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.norm.mymanualapp.R
 import com.norm.mymanualapp.ui.theme.BGLightGrayishCyan
 import com.norm.mymanualapp.ui.theme.Mint
+import com.norm.mymanualapp.utils.DrawerEvents
 
-@Preview
 @Composable
-fun DrawerMenu() {
+fun DrawerMenu(onEvent: (DrawerEvents) -> Unit) {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -47,7 +46,9 @@ fun DrawerMenu() {
             modifier = Modifier.fillMaxSize()
         ) {
             Header()
-            Body()
+            Body() {event ->
+                onEvent(event)
+            }
         }
     }
 }
@@ -87,7 +88,7 @@ fun Header() {
 }
 
 @Composable
-fun Body() {
+fun Body(onEvent: (DrawerEvents) -> Unit) {
     val list = stringArrayResource(id = R.array.drawer_list)
     LazyColumn(
         modifier = Modifier.fillMaxSize()
@@ -96,15 +97,15 @@ fun Body() {
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(BGLightGrayishCyan)
                     .padding(3.dp)
+                    .background(BGLightGrayishCyan)
             ) {
                 Text(
                     text = title,
                     modifier = Modifier
                         .fillMaxSize()
                         .clickable {
-
+                            onEvent(DrawerEvents.OnItemClick(title, index))
                         }
                         .padding(10.dp)
                         .wrapContentWidth(),

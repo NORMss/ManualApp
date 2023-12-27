@@ -5,7 +5,33 @@
         <item>XML</item>
         <item>Room Library</item>
         <item>Data Store</item>
-        <item>Jetpack Compose</item>
         <item>Rest API</item>
     </string-array>
+
+    <string-array name="jetpack_compose">
+        <item>Google I/0|jc_img1.jpg</item>
+        <item>Figma+Material3|jc_img2.jpg</item>
+    </string-array>
+
+    <string-array name="room_lib">
+        <item>Connection diagram|room_img1.jpg</item>
+        <item>Connection program|room_img2.jpg</item>
+    </string-array>
+
+    <string-array name="xml_cards">
+        <item>Dependency diagram|xml_img1.jpg</item>
+        <item>Linear Layout|xml_img2.jpg</item>
+    </string-array>
+
+    <string-array name="ds_cards">
+        <item>Data|ds_img1.jpg</item>
+        <item>When to use?|ds_img2.jpg</item>
+    </string-array>
+
+    <string-array name="ra_cards">
+        <item>Link|non_img.jpg</item>
+        <item>Data parsing|non_img.jpg</item>
+    </string-array>
+
+
 </resources>

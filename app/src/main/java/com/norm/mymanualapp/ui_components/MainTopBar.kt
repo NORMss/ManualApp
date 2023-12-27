@@ -18,20 +18,35 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.unit.dp
+import com.norm.mymanualapp.utils.DrawerEvents
 import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @ExperimentalMaterial3Api
 @Composable
-fun MainTopBar(title: String) {
+fun MainTopBar() {
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
+    val topBarTitle = remember {
+        mutableStateOf("Jetpack Compose")
+    }
     ModalNavigationDrawer(
         drawerContent = {
             ModalDrawerSheet {
-                DrawerMenu()
+                DrawerMenu() { event ->
+                    when (event) {
+                        is DrawerEvents.OnItemClick -> {
+                            topBarTitle.value = event.title
+                        }
+                    }
+                    scope.launch {
+                        drawerState.close()
+                    }
+                }
             }
         },
         drawerState = drawerState
@@ -61,7 +76,7 @@ fun MainTopBar(title: String) {
                         }
                     },
                     title = {
-                        Text(text = title)
+                        Text(text = topBarTitle.value)
                     },
                     colors = TopAppBarDefaults.smallTopAppBarColors(
                         containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(
