@@ -46,7 +46,7 @@ fun DrawerMenu(onEvent: (DrawerEvents) -> Unit) {
             modifier = Modifier.fillMaxSize()
         ) {
             Header()
-            Body() {event ->
+            Body() { event ->
                 onEvent(event)
             }
         }

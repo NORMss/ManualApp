@@ -26,6 +26,8 @@
     <string-array name="ds_cards">
         <item>Data|ds_img1.jpg</item>
         <item>When to use?|ds_img2.jpg</item>
+        <item>Card|ds_img3.jpg</item>
+        <item>Non|non_img.jpg</item>
     </string-array>
 
     <string-array name="ra_cards">
