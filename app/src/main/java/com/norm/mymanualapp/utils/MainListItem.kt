@@ -4,6 +4,7 @@ import android.graphics.BitmapFactory
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -25,12 +26,15 @@ import androidx.compose.ui.unit.dp
 import com.norm.mymanualapp.ui.theme.Mint
 
 @Composable
-fun MainListItem(item: ListItem) {
+fun MainListItem(item: ListItem, onClick: (ListItem) -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .height(250.dp)
-            .padding(5.dp),
+            .padding(5.dp)
+            .clickable {
+                onClick(item)
+            },
         shape = RoundedCornerShape(10.dp),
         border = BorderStroke(2.dp, Mint)
     ) {
@@ -40,7 +44,8 @@ fun MainListItem(item: ListItem) {
         ) {
             AssetImage(
                 imageName = item.imgName,
-                contentDescription = item.title
+                contentDescription = item.title,
+                modifier = Modifier.fillMaxSize()
             )
             Text(
                 modifier = Modifier
@@ -57,7 +62,7 @@ fun MainListItem(item: ListItem) {
 }
 
 @Composable
-fun AssetImage(imageName: String, contentDescription: String) {
+fun AssetImage(imageName: String, contentDescription: String, modifier: Modifier) {
     val context = LocalContext.current
     val assetManager = context.assets
     val inputStream = assetManager.open(imageName)
@@ -66,6 +71,6 @@ fun AssetImage(imageName: String, contentDescription: String) {
         bitmap = bitmap.asImageBitmap(),
         contentDescription = contentDescription,
         contentScale = ContentScale.Crop,
-        modifier = Modifier.fillMaxSize()
+        modifier = modifier
     )
 }

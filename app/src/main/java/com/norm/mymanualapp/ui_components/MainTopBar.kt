@@ -37,7 +37,7 @@ import kotlinx.coroutines.launch
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @ExperimentalMaterial3Api
 @Composable
-fun MainTopBar(context: Context) {
+fun MainTopBar(context: Context, onClick: (ListItem) -> Unit) {
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
     val topBarTitle = remember {
@@ -107,7 +107,9 @@ fun MainTopBar(context: Context) {
                         .padding(top = it.calculateTopPadding())
                 ) {
                     items(mainList.value) { item ->
-                        MainListItem(item = item)
+                        MainListItem(item = item) { listItem ->
+                            onClick(listItem)
+                        }
                     }
                 }
             }
@@ -123,7 +125,8 @@ private fun getListItemsByIndex(index: Int, context: Context): List<ListItem> {
         list.add(
             ListItem(
                 itemArray[0],
-                itemArray[1]
+                itemArray[1],
+                itemArray[2]
             )
         )
     }
