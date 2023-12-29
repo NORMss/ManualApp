@@ -12,8 +12,10 @@ import com.norm.mymanualapp.ui_components.InfoScreen
 import com.norm.mymanualapp.ui_components.MainTopBar
 import com.norm.mymanualapp.utils.ListItem
 import com.norm.mymanualapp.utils.Routes
+import dagger.hilt.android.AndroidEntryPoint
 
 @OptIn(ExperimentalMaterial3Api::class)
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +28,7 @@ class MainActivity : ComponentActivity() {
                     startDestination = Routes.MAIN_SCREEN
                 ) {
                     composable(Routes.MAIN_SCREEN) {
-                        MainTopBar(context = this@MainActivity) { listItem ->
+                        MainTopBar() { listItem ->
                             item = listItem
                             navController.navigate(Routes.INFO_SCREEN)
                         }
