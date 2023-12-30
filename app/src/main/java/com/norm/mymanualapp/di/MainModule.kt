@@ -17,7 +17,9 @@ object MainModule {
     @Singleton
     fun provideMainDb(app: Application): MainDb {
         return Room.databaseBuilder(
-            app, MainDb::class.java, "info.db"
-        ).createFromAsset("db/info.db").build()
+            app,
+            MainDb::class.java,
+            "info_fix.db"
+        ).createFromAsset("db/info_fix.db").build()
     }
 }
