@@ -22,6 +22,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -47,7 +48,9 @@ fun MainTopBar(
     val topBarTitle = remember {
         mutableStateOf("Jetpack Compose")
     }
-    mainViewModel.getAllItemsByCategory(topBarTitle.value)
+    LaunchedEffect(Unit) {
+        mainViewModel.getAllItemsByCategory(topBarTitle.value)
+    }
     ModalNavigationDrawer(
         drawerContent = {
             ModalDrawerSheet {
@@ -83,7 +86,10 @@ fun MainTopBar(
                     },
                     actions = {
                         IconButton(onClick = {
-                        }) {
+                            mainViewModel.getFavorites()
+                            topBarTitle.value = "Favorites"
+                        })
+                        {
                             Icon(
                                 imageVector = Icons.Default.Favorite,
                                 contentDescription = "Favorite"
